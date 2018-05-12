@@ -330,8 +330,8 @@ ASALocalRun/
 .mfractor/
 
 # Nuget Packages
-**/packages
+**/packages/
 
 # Bin Directory
-**/bin
-**/obj
+**/bin/
+**/obj/
