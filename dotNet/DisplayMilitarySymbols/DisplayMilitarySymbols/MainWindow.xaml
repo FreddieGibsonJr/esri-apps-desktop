@@ -8,6 +8,6 @@
         mc:Ignorable="d" WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <esri:MapView x:Name="MyMapView" />
+        <esri:MapView x:Name="m_mapView" />
     </Grid>
 </Window>
