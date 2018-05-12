@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayMilitarySymbols", "DisplayMilitarySymbols\DisplayMilitarySymbols.csproj", "{43FC9300-F5AE-4D76-852D-7EA94AC2E035}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43FC9300-F5AE-4D76-852D-7EA94AC2E035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FC9300-F5AE-4D76-852D-7EA94AC2E035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FC9300-F5AE-4D76-852D-7EA94AC2E035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FC9300-F5AE-4D76-852D-7EA94AC2E035}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1F3462E-A660-48E5-97D9-AE2B4CDF482B}
+	EndGlobalSection
+EndGlobal
