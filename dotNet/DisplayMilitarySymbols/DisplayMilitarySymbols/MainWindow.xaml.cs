@@ -6,9 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
-using Path = System.IO.Path;
-using Geometry = Esri.ArcGISRuntime.Geometry.Geometry;
-using System;
+using Esri.ArcGISRuntime.UI;
 
 namespace DisplayMilitarySymbols
 {
@@ -17,112 +15,400 @@ namespace DisplayMilitarySymbols
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string m_stylePath { get; }
+        private string StylePath { get; }
         private const string FieldName = "sidc";
-        private static Map m_map { get; set; }
+
+        private double Kilometers { get; }
+
+        private static int m_page { get; set; }
+
+        private double m_size { get; }
+        private double m_margin { get; set; }
+
+        private Envelope m_aoi { get; set; }
 
         public MainWindow()
         {
             // Create relative paths to included data
-            var srcPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            m_stylePath = Path.Combine(srcPath, @"data\mil2525c_b2.stylx");
+            StylePath = System.IO.Path.Combine(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location), @"data\mil2525c_b2.stylx");
+
+            // Set the extent of the AOI
+            Kilometers = 1;
+
+            // Establish the rows and columns for the grid
+            m_size = 10;
 
             InitializeComponent();
 
-            m_mapView.Loaded += async (s, e) =>
+            MyMapView.Loaded += async (s, e) =>
             {
                 // Create a map using the navigationVector Basemap
-                m_map = new Map(Basemap.CreateNavigationVector());
+                MyMapView.Map = new Map(Basemap.CreateNavigationVector());
 
-                // Set map to map view
-                m_mapView.Map = m_map;
+                // Create a graphics overlay to display the symbol codes
+                MyMapView.GraphicsOverlays.Add(new GraphicsOverlay { Opacity = 0.7 });
 
+                // Set the initial page to zero
+                m_page = 0;
+
+                // Create the AOI and zoom to it
+                MapPoint pnt = GeometryEngine.Project(new MapPoint(-117.1825, 34.0556, SpatialReferences.Wgs84), SpatialReferences.WebMercator) as MapPoint;
+                m_aoi = GeometryEngine.Buffer(pnt, Kilometers * 1000).Extent;  //GeometryEngine.BufferGeodetic(pnt, Kilometers, LinearUnits.Kilometers).Extent;
+
+                await MyMapView.SetViewpointGeometryAsync(m_aoi, 20);
+
+                // Determine the margin between the symbols
+                m_margin = (m_aoi.XMax - m_aoi.XMin) / m_size;
+
+                System.Diagnostics.Debug.WriteLine(string.Format("{0}: {1}", "XMax", m_aoi.XMax));
+                System.Diagnostics.Debug.WriteLine(string.Format("{0}: {1}", "XMin", m_aoi.XMin));
+                System.Diagnostics.Debug.WriteLine(string.Format("{0}: {1}", "Margin", m_margin));
+
+                //string[] codes = GenerateCodes((int)System.Math.Pow(m_size, 2), m_page * (int)System.Math.Pow(m_size, 2)).ToArray();
+                string[] codes = GenerateCodex().ToArray();
+                RenderSymbols(codes, true);
+
+                // Disable the previous button
+                btnPrevious.IsEnabled = false;
+            };
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as System.Windows.Controls.Button).Content.ToString() == "Previous")
+                m_page--;
+            else
+                m_page++;
+
+            var maxPage = System.Math.Ceiling(GenerateCodes().ToArray().Length / System.Math.Pow(m_size, 2));
+
+            btnPrevious.IsEnabled = m_page > 0;
+            btnNext.IsEnabled = m_page < maxPage;
+
+            string[] codes = GenerateCodes((int)System.Math.Pow(m_size, 2), m_page * (int) System.Math.Pow(m_size, 2)).ToArray();
+            RenderSymbols(codes);
+        }
+
+        private async void RenderSymbols(string[] codes, bool initialize = false)
+        {
+            FeatureCollectionTable dTable;
+            FeatureCollectionTable uTable;
+
+            DictionaryRenderer dRend;
+            UniqueValueRenderer uRend;
+
+            if (initialize)
+            {
                 // Create the default symbol
-                SimpleLineSymbol sls = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Black, 1);
-                SimpleMarkerSymbol sms = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Circle, Colors.Red, 12) { Outline = sls };
+                SimpleMarkerSymbol sms = new SimpleMarkerSymbol(SimpleMarkerSymbolStyle.Circle, Colors.Red, 12) {
+                    Outline = new SimpleLineSymbol(SimpleLineSymbolStyle.Solid, Colors.Black, 1)
+                };
 
-                // Create the Dictionary and Unique Value Renderer
-                DictionarySymbolStyle style = DictionarySymbolStyle.OpenAsync("mil2525c_b2", m_stylePath).Result;
-                DictionaryRenderer dRend = new DictionaryRenderer(DictionarySymbolStyle.OpenAsync("mil2525c_b2", m_stylePath).Result);
-                UniqueValueRenderer uRend = new UniqueValueRenderer(new[] { FieldName }, null, "MilSym", sms);
+                // Create the Dictionary and Unique Value renderers
+                dRend = new DictionaryRenderer(DictionarySymbolStyle.OpenAsync("mil2525c_b2", StylePath).Result);
+                uRend = new UniqueValueRenderer(new[] { FieldName }, null, "MilSymbol", sms);
 
                 // Create the fields for the Feature Collection table
-                List<Field> fields = new List<Field> { new Field(FieldType.Text, FieldName, FieldName, 15) };
+                Field[] fields = { new Field(FieldType.Text, FieldName, FieldName, 15) };
 
-                // Create the Feature Collection tables and assign the renderer
-                FeatureCollectionTable dTable = new FeatureCollectionTable(fields, GeometryType.Point, SpatialReferences.Wgs84) { Renderer = dRend };
-                FeatureCollectionTable uTable = new FeatureCollectionTable(fields, GeometryType.Point, SpatialReferences.Wgs84) { Renderer = uRend };
+                // Create the Feature Collection Tables
+                dTable = new FeatureCollectionTable(fields, GeometryType.Point, SpatialReferences.WebMercator) { Renderer = dRend };
+                uTable = new FeatureCollectionTable(fields, GeometryType.Point, SpatialReferences.WebMercator) { Renderer = uRend };
 
-                // Add the table to a feature collection
-                FeatureCollection dCollection = new FeatureCollection(new[] { dTable });
-                FeatureCollection uCollection = new FeatureCollection(new[] { uTable });
+                // Add the tables to the feature collection
+                FeatureCollection collection = new FeatureCollection(new[] { dTable, uTable });
 
-                // Add the collections to the map
-                FeatureCollectionLayer dLayer = new FeatureCollectionLayer(dCollection);
-                FeatureCollectionLayer uLayer = new FeatureCollectionLayer(uCollection);
-                m_map.OperationalLayers.Add(dLayer);
-                m_map.OperationalLayers.Add(uLayer);
+                // Add the collection to the map
+                MyMapView.Map.OperationalLayers.Add(new FeatureCollectionLayer(collection));
 
-                // Get the sic codes
-                string[] codes = GenerateSymbolCodes(100);
+            } else
+            {
+                // Get the feature collection from the map
+                FeatureCollection collection = (MyMapView.Map.OperationalLayers.First() as FeatureCollectionLayer).FeatureCollection;
 
-                // Get the AOI
-                MapPoint pnt = GeometryEngine.Project(new MapPoint(-117.1825, 34.0556, SpatialReferences.Wgs84), SpatialReferences.WebMercator) as MapPoint;
-                Envelope aoi = GeometryEngine.Project(GeometryEngine.Buffer(pnt, 1000), SpatialReferences.Wgs84).Extent;
+                // Get the tables from the collection
+                dTable = collection.Tables.First();
+                uTable = collection.Tables.Last();
 
-                await m_mapView.SetViewpointGeometryAsync(aoi, 20);
+                // Clear the records from the table and overlay
+                QueryParameters query = new QueryParameters { WhereClause = "1=1" };
+                await dTable.DeleteFeaturesAsync(dTable.QueryFeaturesAsync(query).Result);
+                await uTable.DeleteFeaturesAsync(uTable.QueryFeaturesAsync(query).Result);
+                MyMapView.GraphicsOverlays.First().Graphics.Clear();
 
-                // Get the grid size
-                double width = Math.Ceiling(Math.Sqrt(codes.Length));
-                double padding = (aoi.XMax - aoi.XMin) / width;
+                // Clear the symbols from the unique value renderer
+                (uTable.Renderer as UniqueValueRenderer)?.UniqueValues.Clear();
+            }
 
-                // Create features within the grid
-                int count = 0;
-                for (double x = aoi.XMin; x <= aoi.XMax; x += padding)
+            int count = 0;
+            for (double x = m_aoi.XMin; x < m_aoi.XMax; x += m_margin)
+            {
+                if (count >= codes.Length)
+                    break;
+
+                for (double y = m_aoi.YMax; y > m_aoi.YMin; y -= m_margin)
                 {
                     if (count >= codes.Length)
                         break;
 
-                    for (double y = aoi.YMax; y >= aoi.YMin; y -= padding)
+                    string code = codes[count];
+
+                    if (code.Length != 15)
                     {
-                        if (count >= codes.Length)
-                            break;
+                        System.Diagnostics.Debug.WriteLine(string.Format("Possible invalid sidc: {0}", code));
+                    } else
+                    {
+                        // Create features with the sidc code
+                        Feature dFeature = dTable.CreateFeature(new Dictionary<string, object> { { FieldName, code } }, new MapPoint(x, y, SpatialReferences.WebMercator));
+                        Feature uFeature = uTable.CreateFeature(new Dictionary<string, object> { { FieldName, code } }, new MapPoint(x + (m_margin * 0.5), y, SpatialReferences.WebMercator));
 
-                        if (codes[count].Length > 15)
-                            System.Diagnostics.Debug.WriteLine(codes[count]);
+                        // Create a label to display the code
+                        TextSymbol label = new TextSymbol
+                        {
+                            Text = string.Format(@"{0:0000}: {1}", count + 1 + (m_page * (int) System.Math.Pow(m_size, 2)), code),
+                            FontWeight = Esri.ArcGISRuntime.Symbology.FontWeight.Bold,
+                            Color = Colors.DarkGoldenrod,
+                            BackgroundColor = Colors.Black,
+                            FontFamily = "Consolas",
+                            Size = 12
+                        };
 
-                        var dFeature = dTable.CreateFeature(new Dictionary<string, object> { { FieldName, codes[count] } }, new MapPoint(x, y, SpatialReferences.Wgs84));
-                        var uFeature = uTable.CreateFeature(new Dictionary<string, object> { { FieldName, codes[count] } }, new MapPoint(x + (padding * 0.5), y, SpatialReferences.Wgs84));
+                        MapPoint labelPoint = new MapPoint(x + (m_margin * 0.25), y - (m_margin * 0.25), SpatialReferences.WebMercator);
+                        MyMapView.GraphicsOverlays.First().Graphics.Add(new Graphic(labelPoint, label));
 
-                        // Add the Feature to the table
+                        // Add the feature to the table
                         await dTable.AddFeatureAsync(dFeature);
                         await uTable.AddFeatureAsync(uFeature);
 
-                        //string json = dRend.GetSymbol(dFeature).ToJson();
+                        // Triple the size of the Unique Value symbol
+                        MultilayerPointSymbol symbol = (MultilayerPointSymbol)(dTable.Renderer as DictionaryRenderer).GetSymbol(dFeature);
+                        symbol.Size *= 6;
 
-                        MultilayerPointSymbol symbol = (MultilayerPointSymbol) dRend.GetSymbol(dFeature);
-                        symbol.Size *= 2;
+                        System.Diagnostics.Debug.WriteLine("Symbol Size: {0}", new object[] { symbol.Size });
 
-                        UniqueValue uval = new UniqueValue(codes[count], codes[count], symbol, codes[count]);
-                        uRend.UniqueValues.Add(uval);
-
-                        count++;
-
-                        System.Diagnostics.Debug.WriteLine(string.Format("Processed feature {0} of {1}.", count, codes.Length));
+                        // Add the military symbol to the unique value renderer
+                        UniqueValue uval = new UniqueValue(code, code, symbol, code);
+                        (uTable.Renderer as UniqueValueRenderer).UniqueValues.Add(uval);
                     }
+
+                    count++;
+
+                    System.Diagnostics.Debug.WriteLine(string.Format(@"Processed feature {0} for {1}...", count, codes.Length));
                 }
+            }
+            
+        }
+
+        private IEnumerable<string> GenerateCodex()
+        {
+            Dictionary<string, string[]> codes = new Dictionary<string, string[]>
+            {
+                { "Missing black tip at top", new []
+                    {
+                        "SUPP------*****",
+                        "SFPP------*****",
+                        "SNPP------*****",
+                        "SHPP------*****",
+                        "SUPPS-----*****",
+                        "SFPPS-----*****",
+                        "SNPPS-----*****",
+                        "SHPPS-----*****",
+                        "SUPPV-----*****",
+                        "SFPPV-----*****",
+                        "SNPPV-----*****",
+                        "SHPPV-----*****",
+                        "SUPPT-----*****",
+                        "SFPPT-----*****",
+                        "SNPPT-----*****",
+                        "SHPPT-----*****",
+                        "SUPPL-----*****",
+                        "SFPPL-----*****",
+                        "SNPPL-----*****",
+                        "SHPPL-----*****",
+                    }
+                },
+
+                { "L blends in with bottom", new [] 
+                    {
+                        "SUAPMFCL--*****",
+                        "SFAPMFCL--*****",
+                        "SNAPMFCL--*****",
+                        "SHAPMFCL--*****",
+                        "SUAPMFUL--*****",
+                        "SFAPMFUL--*****",
+                        "SNAPMFUL--*****",
+                        "SHAPMFUL--*****"
+                    }
+                },
 
 
             };
+
+            return codes["Missing black tip at top"];
         }
 
-        private string[] GenerateSymbolCodes(int count = 0, int skip = 0)
+        private static void GenerateSIDC()
         {
-            if (count > 0)
-                count++;
-
-            string[] codes = new string[]
+            Dictionary<int, string> errors = new Dictionary<int, string>
             {
+                {0, "" }
+            };
+
+            /*
+            Dictionary<string, int> codes = new Dictionary<string, int>
+            {
+                {"SUPP------*****", 91 }, {"SFPP------*****", 91 }, {"SNPP------*****", 91 }, {"SHPP------*****", 91 },
+                {"SUPPS-----*****", 91 }, {"SFPPS-----*****", 91 }, {"SNPPS-----*****", 91 }, {"SHPPS-----*****", 91 },
+                {"SUPPV-----*****", 91 }, {"SFPPV-----*****", 91 }, {"SNPPV-----*****", 91 }, {"SHPPV-----*****", 91 },
+                {"SUPPT-----*****", 91 }, {"SFPPT-----*****", 91 }, {"SNPPT-----*****", 91 }, {"SHPPT-----*****", 91 },
+                {"SUPPL-----*****", 91 }, {"SFPPL-----*****", 91 }, {"SNPPL-----*****", 91 }, {"SHPPL-----*****", 91 },
+                {"SUAP------*****", 91 }, {"SFAP------*****", 91 }, {"SNAP------*****", 91 }, {"SHAP------*****", 91 },
+
+                {"SUAPMFKD--", 94 }, {"SFAPMFKD--", 94 }, {"SNAPMFKD--", 94 }, {"SHAPMFKD--", 94 },
+                {"SUAPMFC---", 94 }, {"SFAPMFC---", 94 }, {"SNAPMFC---", 94 }, {"SHAPMFC---", 94 },
+                {"SUAPMFCL--", 94 }, {"SFAPMFCL--", 94 }, {"SNAPMFCL--", 94 }, {"SHAPMFCL--", 94 },
+                {"SUAPMFCM--", 94 }, {"SFAPMFCM--", 94 }, {"SNAPMFCM--", 94 }, {"SHAPMFCM--", 94 },
+                {"SUAPMFCH--", 94 }, {"SFAPMFCH--", 94 }, {"SNAPMFCH--", 94 }, {"SHAPMFCH--", 94 },
+
+                {"", -1 }, {"", -1 }, {"", -1 }, {"", -1 },
+                {"", -1 }, {"", -1 }, {"", -1 }, {"", -1 },
+                {"", -1 }, {"", -1 }, {"", -1 }, {"", -1 },
+                {"", -1 }, {"", -1 }, {"", -1 }, {"", -1 },
+                {"", -1 }, {"", -1 }, {"", -1 }, {"", -1 },
+            };*/
+
+            Dictionary<int, string[]> codes = new Dictionary<int, string[]>
+            {
+                { 91, new [] 
+                    {
+                        "SUPP------*****", "SFPP------*****", "SNPP------*****", "SHPP------*****",
+                        "SUPPS-----*****", "SFPPS-----*****", "SNPPS-----*****", "SHPPS-----*****",
+                        "SUPPV-----*****", "SFPPV-----*****", "SNPPV-----*****", "SHPPV-----*****",
+                        "SUPPT-----*****", "SFPPT-----*****", "SNPPT-----*****", "SHPPT-----*****",
+                        "SUPPL-----*****", "SFPPL-----*****", "SNPPL-----*****", "SHPPL-----*****",
+                        "SUAP------*****", "SFAP------*****", "SNAP------*****", "SHAP------*****"
+                    }
+                },
+                { 92, new [] 
+                    {
+                        "SUAPM-----*****", "SFAPM-----*****", "SNAPM-----*****", "SHAPM-----*****",
+                        "SUAPMF----*****", "SFAPMF----*****", "SNAPMF----*****", "SHAPMF----*****",
+                        "SUAPMFB---*****", "SFAPMFB---*****", "SNAPMFB---*****", "SHAPMFB---*****",
+                        "SUAPMFF---*****", "SFAPMFF---*****", "SNAPMFF---*****", "SHAPMFF---*****",
+                        "SUAPMFFI--*****", "SFAPMFFI--*****", "SNAPMFFI--*****", "SHAPMFFI--*****"
+                    }
+                },
+                { 93, new []
+                    {
+                        "SUAPMFT---", "SFAPMFT---*****", "SNAPMFT---", "SHAPMFT---",
+                        "SUAPMFA---", "SFAPMFA---", "SNAPMFA---", "SHAPMFA---",
+                        "SUAPMFL---", "SFAPMFL---*****", "SNAPMFL---", "SHAPMFL---",
+                        "SUAPMFK---", "SFAPMFK---", "SNAPMFK---", "SHAPMFK---",
+                        "SUAPMFKB--", "SFAPMFKB--", "SNAPMFKB--", "SHAPMFKB--"
+                    }
+                },
+                { 94, new []
+                    {
+                        "SUAPMFKD--", "SFAPMFKD--", "SNAPMFKD--", "SHAPMFKD--",
+                        "SUAPMFC---", "SFAPMFC---", "SNAPMFC---", "SHAPMFC---",
+                        "SUAPMFCL--", "SFAPMFCL--", "SNAPMFCL--", "SHAPMFCL--",
+                        "SUAPMFCM--", "SFAPMFCM--", "SNAPMFCM--", "SHAPMFCM--",
+                        "SUAPMFCH--", "SFAPMFCH--", "SNAPMFCH--", "SHAPMFCH--"
+                    }
+                },
+                { 95, new []
+                    {
+                        "SUAPMFJ---*****", "SFAPMFJ---*****", "SNAPMFJ---*****", "SHAPMFJ---*****",
+                        "SUAPMFO---", "SFAPMFO---", "SNAPMFO---", "SHAPMFO---",
+                        "SUAPMFR---", "SFAPMFR---", "SNAPMFR---", "SHAPMFR---",
+                        "SUAPMFRW--", "SFAPMFRW--", "SNAPMFRW--", "SHAPMFRW--",
+                        "SUAPMFRZ--", "SFAPMFRZ--", "SNAPMFRZ--", "SHAPMFRZ--"
+                    }
+                },
+                { 96, new []
+                    {
+                        "SUAPMFRX--", "SFAPMFRX--", "SNAPMFRX--", "SHAPMFRX--",
+                        "SUAPMFP---", "SFAPMFP---*****", "SNAPMFP---", "SHAPMFP---",
+                        "SUAPMFPN--", "SFAPMFPN--", "SNAPMFPN--", "SHAPMFPN--",
+                        "SUAPMFPM--", "SFAPMFPM--", "SNAPMFPM--", "SHAPMFPM--",
+                        "SUAPMFU---", "SFAPMFU---", "SNAPMFU---", "SHAPMFU---"
+                    }
+                },
+                { 97, new []
+                    {
+                        "SUAPMFUL--", "SFAPMFUL--", "SNAPMFUL--", "SHAPMFUL--",
+                        "SUAPMFUM--", "SFAPMFUM--", "SNAPMFUM--", "SHAPMFUM--",
+                        "SUAPMFUH--", "SFAPMFUH--", "SNAPMFUH--", "SHAPMFUH--",
+                        "SUAPMFY---", "SFAPMFY---", "SNAPMFY---", "SHAPMFY---",
+                        "SUAPMFH---", "SFAPMFH---", "SNAPMFH---", "SHAPMFH---"
+                    }
+                },
+                { 98, new []
+                    {
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", ""
+                    }
+                },
+                { 99, new []
+                    {
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", ""
+                    }
+                },
+                { 100, new []
+                    {
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", ""
+                    }
+                },
+                { 101, new []
+                    {
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", ""
+                    }
+                },
+                { 102, new []
+                    {
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", ""
+                    }
+                },
+                { 103, new []
+                    {
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", "",
+                        "", "", "", ""
+                    }
+                }
+            };
+        }
+
+        private IEnumerable<string> GenerateCodes(int count = 0, int skip = 0)
+        {
+            string[] codes =  {
                 "IFAPSCC--------", "IFAPSCO--------", "IFAPSCP--------", "IFAPSCS--------", "IFAPSRAI-------", "IFAPSRAS-------", "IFAPSRC--------", "IFAPSRD--------", "IFAPSRE--------", "IFAPSRF--------", "IFAPSRI--------",
                 "IFAPSRMA-------", "IFAPSRMD-------", "IFAPSRMF-------", "IFAPSRMG-------", "IFAPSRMT-------", "IFAPSRTA-------", "IFAPSRTI-------", "IFAPSRTT-------", "IFAPSRU--------", "IFGPSCC--------", "IFGPSCO--------",
                 "IFGPSCP--------", "IFGPSCS--------", "IFGPSCT--------", "IFGPSRAA-------", "IFGPSRAT-------", "IFGPSRB--------", "IFGPSRCA-------", "IFGPSRCS-------", "IFGPSRD--------", "IFGPSRE--------", "IFGPSRF--------",
@@ -468,9 +754,9 @@ namespace DisplayMilitarySymbols
                 "SUUPWMMX-------", "SUUPWMN--------", "SUUPWMO--------", "SUUPWMOD-------", "SUUPWMR--------", "SUUPWMS--------", "SUUPWMSD-------", "SUUPWMSX-------", "SUUPWMX--------", "SUUPWT---------", "SUUPX----------"
             };
 
-            return (count == 0 || (count + skip) >= codes.Length)
+            return (count == 0)
                 ? codes
-                : codes.Skip(skip).Take(count).ToArray();
+                : codes.Skip(skip).Take(count);
         }
 
     }

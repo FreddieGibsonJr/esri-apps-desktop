@@ -8,6 +8,16 @@
         mc:Ignorable="d" WindowState="Maximized"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <esri:MapView x:Name="m_mapView" />
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <esri:MapView x:Name="MyMapView" />
+
+        <UniformGrid Grid.Row="1" Columns="2">
+            <Button x:Name="btnPrevious" Content="Previous" Click="Button_Click" />
+            <Button x:Name="btnNext" Content="Next" Click="Button_Click" />
+        </UniformGrid>
+        
     </Grid>
 </Window>

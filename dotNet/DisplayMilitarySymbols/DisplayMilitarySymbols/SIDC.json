@@ -1,0 +1,1010 @@
+﻿{
+  "sidc": [
+    {
+      "page": 91,
+      "codes": [
+        "SUPP------*****",
+        "SUPPS-----*****",
+        "SUPPV-----*****",
+        "SUPPT-----*****",
+        "SUPPL-----*****",
+        "SUAP------*****",
+        "SFPP------*****",
+        "SFPPS-----*****",
+        "SFPPV-----*****",
+        "SFPPT-----*****",
+        "SFPPL-----*****",
+        "SFAP------*****",
+        "SNPP------*****",
+        "SNPPS-----*****",
+        "SNPPV-----*****",
+        "SNPPT-----*****",
+        "SNPPL-----*****",
+        "SNAP------*****",
+        "SHPP------*****",
+        "SHPPS-----*****",
+        "SHPPV-----*****",
+        "SHPPT-----*****",
+        "SHPPL-----*****",
+        "SHAP------*****"
+      ]
+    },
+    {
+      "page": 94,
+      "codes": [
+        "SUAPMFKD--*****",
+        "SUAPMFC---*****",
+        "SUAPMFCL--*****",
+        "SUAPMFCM--*****",
+        "SUAPMFCH--*****",
+        "SFAPMFKD--*****",
+        "SFAPMFC---*****",
+        "SFAPMFCL--*****",
+        "SFAPMFCM--*****",
+        "SFAPMFCH--*****",
+        "SNAPMFKD--*****",
+        "SNAPMFC---*****",
+        "SNAPMFCL--*****",
+        "SNAPMFCM--*****",
+        "SNAPMFCH--*****",
+        "SHAPMFKD--*****",
+        "SHAPMFC---*****",
+        "SHAPMFCL--*****",
+        "SHAPMFCM--*****",
+        "SHAPMFCH--*****"
+      ]
+    },
+    {
+      "page": 97,
+      "codes": [
+        "SUAPMFUL--*****",
+        "SUAPMFUM--*****",
+        "SUAPMFUH--*****",
+        "SUAPMFY---*****",
+        "SUAPMFH---*****",
+        "SFAPMFUL--*****",
+        "SFAPMFUM--*****",
+        "SFAPMFUH--*****",
+        "SFAPMFY---*****",
+        "SFAPMFH---*****",
+        "SNAPMFUL--*****",
+        "SNAPMFUM--*****",
+        "SNAPMFUH--*****",
+        "SNAPMFY---*****",
+        "SNAPMFH---*****",
+        "SHAPMFUL--*****",
+        "SHAPMFUM--*****",
+        "SHAPMFUH--*****",
+        "SHAPMFY---*****",
+        "SHAPMFH---*****"
+      ]
+    },
+    {
+      "page": 104,
+      "codes": [
+        "SUAPMHU---*****",
+        "SUAPMHUL--*****",
+        "SUAPMHUM--*****",
+        "SUAPMHUH--*****",
+        "SUAPMHI---*****",
+        "SFAPMHU---*****",
+        "SFAPMHUL--*****",
+        "SFAPMHUM--*****",
+        "SFAPMHUH--*****",
+        "SFAPMHI---*****",
+        "SNAPMHU---*****",
+        "SNAPMHUL--*****",
+        "SNAPMHUM--*****",
+        "SNAPMHUH--*****",
+        "SNAPMHI---*****",
+        "SHAPMHU---*****",
+        "SHAPMHUL--*****",
+        "SHAPMHUM--*****",
+        "SHAPMHUH--*****",
+        "SHAPMHI---*****"
+      ]
+    },
+    {
+      "page": 105,
+      "codes": [
+        "SUAPMHH---*****",
+        "SUAPMHR---*****",
+        "SUAPMHQ---*****",
+        "SUAPMHC---*****",
+        "SUAPMHCL--*****",
+        "SFAPMHH---*****",
+        "SFAPMHR---*****",
+        "SFAPMHQ---*****",
+        "SFAPMHC---*****",
+        "SFAPMHCL--*****",
+        "SNAPMHH---*****",
+        "SNAPMHR---*****",
+        "SNAPMHQ---*****",
+        "SNAPMHC---*****",
+        "SNAPMHCL--*****",
+        "SHAPMHH---*****",
+        "SHAPMHR---*****",
+        "SHAPMHQ---*****",
+        "SHAPMHC---*****",
+        "SHAPMHCL--*****"
+      ]
+    },
+    {
+      "page": 108,
+      "codes": [
+        "SUAPME----*****",
+        "SUAPW-----*****",
+        "SUAPWM----*****",
+        "SUAPWMS---*****",
+        "SUAPWMSS--*****",
+        "SFAPME----*****",
+        "SFAPW-----*****",
+        "SFAPWM----*****",
+        "SFAPWMS---*****",
+        "SFAPWMSS--*****",
+        "SNAPME----*****",
+        "SNAPW-----*****",
+        "SNAPWM----*****",
+        "SNAPWMS---*****",
+        "SNAPWMSS--*****",
+        "SHAPME----*****",
+        "SHAPW-----*****",
+        "SHAPWM----*****",
+        "SHAPWMS---*****",
+        "SHAPWMSS--*****"
+      ]
+    },
+    {
+      "page": 113,
+      "codes": [
+        "SUGPUCDSC-*****",
+        "SUGPUCDSS-*****",
+        "SUGPUCDSV-*****",
+        "SUGPUCDM--*****",
+        "SFGPUCDSC-*****",
+        "SFGPUCDSS-*****",
+        "SFGPUCDSV-*****",
+        "SFGPUCDM--*****",
+        "SNGPUCDSC-*****",
+        "SNGPUCDSS-*****",
+        "SNGPUCDSV-*****",
+        "SNGPUCDM--*****",
+        "SHGPUCDSC-*****",
+        "SHGPUCDSS-*****",
+        "SHGPUCDSV-*****",
+        "SHGPUCDM--*****"
+      ]
+    },
+    {
+      "page": 114,
+      "codes": [
+        "SUGPUCDML-*****",
+        "SUGPUCDMLA*****",
+        "SUGPUCDMM-*****",
+        "SUGPUCDMH-*****",
+        "SFGPUCDML-*****",
+        "SFGPUCDMLA*****",
+        "SFGPUCDMM-*****",
+        "SFGPUCDMH-*****",
+        "SNGPUCDML-*****",
+        "SNGPUCDMLA*****",
+        "SNGPUCDMM-*****",
+        "SNGPUCDMH-*****",
+        "SHGPUCDML-*****",
+        "SHGPUCDMLA*****",
+        "SHGPUCDMM-*****",
+        "SHGPUCDMH-*****"
+      ]
+    },
+    {
+      "page": 115,
+      "codes": [
+        "SUGPUCDH--*****",
+        "SUGPUCDHH-*****",
+        "SUGPUCDHP-*****",
+        "SUGPUCDG--*****",
+        "SFGPUCDH--*****",
+        "SFGPUCDHH-*****",
+        "SFGPUCDHP-*****",
+        "SFGPUCDG--*****",
+        "SNGPUCDH--*****",
+        "SNGPUCDHH-*****",
+        "SNGPUCDHP-*****",
+        "SNGPUCDG--*****",
+        "SHGPUCDH--*****",
+        "SHGPUCDHH-*****",
+        "SHGPUCDHP-*****",
+        "SHGPUCDG--*****"
+      ]
+    },
+    {
+      "page": 116,
+      "codes": [
+        "SUGPUCDC--*****",
+        "SUGPUCDT--*****",
+        "SUGPUCDO--*****",
+        "SUGPUCA---*****",
+        "SUGPUCAT--*****",
+        "SFGPUCDC--*****",
+        "SFGPUCDT--*****",
+        "SFGPUCDO--*****",
+        "SFGPUCA---*****",
+        "SFGPUCAT--*****",
+        "SNGPUCDC--*****",
+        "SNGPUCDT--*****",
+        "SNGPUCDO--*****",
+        "SNGPUCA---*****",
+        "SNGPUCAT--*****",
+        "SHGPUCDC--*****",
+        "SHGPUCDT--*****",
+        "SHGPUCDO--*****",
+        "SHGPUCA---*****",
+        "SHGPUCAT--*****"
+      ]
+    },
+    {
+      "page": 122,
+      "codes": [
+        "SUGPUCAAU-*****",
+        "SUGPUCAAC-*****",
+        "SUGPUCAAA-*****",
+        "SUGPUCAAAT*****",
+        "SFGPUCAAU-*****",
+        "SFGPUCAAC-*****",
+        "SFGPUCAAA-*****",
+        "SFGPUCAAAT*****",
+        "SNGPUCAAU-*****",
+        "SNGPUCAAC-*****",
+        "SNGPUCAAA-*****",
+        "SNGPUCAAAT*****",
+        "SHGPUCAAU-*****",
+        "SHGPUCAAC-*****",
+        "SHGPUCAAA-*****",
+        "SHGPUCAAAT*****"
+      ]
+    },
+    {
+      "page": 129,
+      "codes": [
+        "SUGPUCVUF-*****",
+        "SUGPUCVUR-*****",
+        "SUGPUCI---*****",
+        "SUGPUCIL--*****",
+        "SUGPUCIM--*****",
+        "SFGPUCVUF-*****",
+        "SFGPUCVUR-*****",
+        "SFGPUCI---*****",
+        "SFGPUCIL--*****",
+        "SFGPUCIM--*****",
+        "SNGPUCVUF-*****",
+        "SNGPUCVUR-*****",
+        "SNGPUCI---*****",
+        "SNGPUCIL--*****",
+        "SNGPUCIM--*****",
+        "SHGPUCVUF-*****",
+        "SHGPUCVUR-*****",
+        "SHGPUCI---*****",
+        "SHGPUCIL--*****",
+        "SHGPUCIM--*****"
+      ]
+    },
+    {
+      "page": 130,
+      "codes": [
+        "SUGPUCIO--*****",
+        "SUGPUCIA--*****",
+        "SUGPUCIS--*****",
+        "SUGPUCIZ--*****",
+        "SUGPUCIN--*****",
+        "SFGPUCIO--*****",
+        "SFGPUCIA--*****",
+        "SFGPUCIS--*****",
+        "SFGPUCIZ--*****",
+        "SFGPUCIN--*****",
+        "SNGPUCIO--*****",
+        "SNGPUCIA--*****",
+        "SNGPUCIS--*****",
+        "SNGPUCIZ--*****",
+        "SNGPUCIN--*****",
+        "SHGPUCIO--*****",
+        "SHGPUCIA--*****",
+        "SHGPUCIS--*****",
+        "SHGPUCIZ--*****",
+        "SHGPUCIN--*****"
+      ]
+    },
+    {
+      "page": 131,
+      "codes": [
+        "SUGPUCII--*****",
+        "SUGPUCIC--*****",
+        "SUGPUCE---*****",
+        "SUGPUCEC--*****",
+        "SUGPUCECS-*****",
+        "SFGPUCII--*****",
+        "SFGPUCIC--*****",
+        "SFGPUCE---*****",
+        "SFGPUCEC--*****",
+        "SFGPUCECS-*****",
+        "SNGPUCII--*****",
+        "SNGPUCIC--*****",
+        "SNGPUCE---*****",
+        "SNGPUCEC--*****",
+        "SNGPUCECS-*****",
+        "SHGPUCII--*****",
+        "SHGPUCIC--*****",
+        "SHGPUCE---*****",
+        "SHGPUCEC--*****",
+        "SHGPUCECS*****-"
+      ]
+    },
+    {
+      "page": 132,
+      "codes": [
+        "SUGPUCECA-*****",
+        "SUGPUCECC-*****",
+        "SUGPUCECL-*****",
+        "SUGPUCECM-*****",
+        "SFGPUCECA-*****",
+        "SFGPUCECC-*****",
+        "SFGPUCECL-*****",
+        "SFGPUCECM-*****",
+        "SNGPUCECA-*****",
+        "SNGPUCECC-*****",
+        "SNGPUCECL-*****",
+        "SNGPUCECM-*****",
+        "SHGPUCECA-*****",
+        "SHGPUCECC-*****",
+        "SHGPUCECL-*****",
+        "SHGPUCECM-*****"
+      ]
+    },
+    {
+      "page": 133,
+      "codes": [
+        "SUGPUCECH-*****",
+        "SUGPUCECT-*****",
+        "SUGPUCECW-*****",
+        "SUGPUCECO-*****",
+        "SFGPUCECH-*****",
+        "SFGPUCECT-*****",
+        "SFGPUCECW-*****",
+        "SFGPUCECO-*****",
+        "SNGPUCECH-*****",
+        "SNGPUCECT-*****",
+        "SNGPUCECW-*****",
+        "SNGPUCECO-*****",
+        "SHGPUCECH-*****",
+        "SHGPUCECT-*****",
+        "SHGPUCECW-*****",
+        "SHGPUCECO-*****"
+      ]
+    },
+    {
+      "page": 134,
+      "codes": [
+        "SUGPUCECR-*****",
+        "SUGPUCEN--*****",
+        "SUGPUCENN-*****",
+        "SUGPUCF---*****",
+        "SUGPUCFH--*****",
+        "SFGPUCECR-*****",
+        "SFGPUCEN--*****",
+        "SFGPUCENN-*****",
+        "SFGPUCF---*****",
+        "SFGPUCFH--*****",
+        "SNGPUCECR-*****",
+        "SNGPUCEN--*****",
+        "SNGPUCENN-*****",
+        "SNGPUCF---*****",
+        "SNGPUCFH--*****",
+        "SHGPUCECR-*****",
+        "SHGPUCEN--*****",
+        "SHGPUCENN-*****",
+        "SHGPUCF---*****",
+        "SHGPUCFH--*****"
+      ]
+    },
+    {
+      "page": 138,
+      "codes": [
+        "SUGPUCFRSR*****",
+        "SUGPUCFRST*****",
+        "SUGPUCFRM-*****",
+        "SUGPUCFRMS*****",
+        "SFGPUCFRSR*****",
+        "SFGPUCFRST*****",
+        "SFGPUCFRM-*****",
+        "SFGPUCFRMS*****",
+        "SNGPUCFRSR*****",
+        "SNGPUCFRST*****",
+        "SNGPUCFRM-*****",
+        "SNGPUCFRMS*****",
+        "SHGPUCFRSR*****",
+        "SHGPUCFRST*****",
+        "SHGPUCFRM-*****",
+        "SHGPUCFRMS*****"
+      ]
+    },
+    {
+      "page": 142,
+      "codes": [
+        "SUGPUCFMW-*****",
+        "SUGPUCFMT-*****",
+        "SUGPUCFMT-*****",
+        "SUGPUCFMT-*****",
+        "SFGPUCFMW-*****",
+        "SFGPUCFMT-*****",
+        "SFGPUCFMTA*****",
+        "SFGPUCFMTS*****",
+        "SNGPUCFMW-*****",
+        "SNGPUCFMT-*****",
+        "SNGPUCFMTA*****",
+        "SNGPUCFMTS*****",
+        "SHGPUCFMW-*****",
+        "SHGPUCFMT-*****",
+        "SHGPUCFMTA*****",
+        "SHGPUCFMTS*****"
+      ]
+    },
+    {
+      "page": 156,
+      "codes": [
+        "SUGPUUABR-*****",
+        "SUGPUUAD--*****",
+        "SUGPUUM---*****",
+        "SUGPUUMA--*****",
+        "SUGPUUMS--*****",
+        "SFGPUUABR-*****",
+        "SFGPUUAD--*****",
+        "SFGPUUM---*****",
+        "SFGPUUMA--*****",
+        "SFGPUUMS--*****",
+        "SNGPUUABR-*****",
+        "SNGPUUAD--*****",
+        "SNGPUUM---*****",
+        "SNGPUUMA--*****",
+        "SNGPUUMS--*****",
+        "SHGPUUABR-*****",
+        "SHGPUUAD--*****",
+        "SHGPUUM---*****",
+        "SHGPUUMA--*****",
+        "SHGPUUMS--*****"
+      ]
+    },
+    {
+      "page": 158,
+      "codes": [
+        "SUGPUUMSEJ*****",
+        "SUGPUUMSET*****",
+        "SUGPUUMSEC*****",
+        "SUGPUUMC--*****",
+        "SFGPUUMSEJ*****",
+        "SFGPUUMSET*****",
+        "SFGPUUMSEC*****",
+        "SFGPUUMC--*****",
+        "SNGPUUMSEJ*****",
+        "SNGPUUMSET*****",
+        "SNGPUUMSEC*****",
+        "SNGPUUMC--*****",
+        "SHGPUUMSEJ*****",
+        "SHGPUUMSET*****",
+        "SHGPUUMSEC*****",
+        "SHGPUUMC--*****"
+      ]
+    },
+    {
+      "page": 165,
+      "codes": [
+        "SUGPUUSR--*****",
+        "SUGPUUSRS-*****",
+        "SUGPUUSRT-*****",
+        "SUGPUUSRW-*****",
+        "SFGPUUSR--*****",
+        "SFGPUUSRS-*****",
+        "SFGPUUSRT-*****",
+        "SFGPUUSRW-*****",
+        "SNGPUUSR--*****",
+        "SNGPUUSRS-*****",
+        "SNGPUUSRT-*****",
+        "SNGPUUSRW-*****",
+        "SHGPUUSR--*****",
+        "SHGPUUSRS-*****",
+        "SHGPUUSRT-*****",
+        "SHGPUUSRW-*****"
+      ]
+    },
+    {
+      "page": 167,
+      "codes": [
+        "SUGPUUE---*****",
+        "SUGPUS----*****",
+        "SUGPUSA---*****",
+        "SUGPUSAT--*****",
+        "SUGPUSAC--*****",
+        "SFGPUUE---*****",
+        "SFGPUS----*****",
+        "SFGPUSA---*****",
+        "SFGPUSAT--*****",
+        "SFGPUSAC--*****",
+        "SNGPUUE---*****",
+        "SNGPUS----*****",
+        "SNGPUSA---*****",
+        "SNGPUSAT--*****",
+        "SNGPUSAC--*****",
+        "SHGPUUE---*****",
+        "SHGPUS----*****",
+        "SHGPUSA---*****",
+        "SHGPUSAT--*****",
+        "SHGPUSAC--*****"
+      ]
+    },
+    {
+      "page": 182,
+      "codes": [
+        "SUGPUSS1T-*****",
+        "SUGPUSS1C-*****",
+        "SUGPUSS2--*****",
+        "SUGPUSS2T-*****",
+        "SFGPUSS1T-*****",
+        "SFGPUSS1C-*****",
+        "SFGPUSS2--*****",
+        "SFGPUSS2T-*****",
+        "SNGPUSS1T-*****",
+        "SNGPUSS1C-*****",
+        "SNGPUSS2--*****",
+        "SNGPUSS2T-*****",
+        "SHGPUSS1T-*****",
+        "SHGPUSS1C-*****",
+        "SHGPUSS2--*****",
+        "SHGPUSS2T-*****"
+      ]
+    },
+    {
+      "page": 199,
+      "codes": [
+        "SUGPUSXOC-*****",
+        "SUGPUSXOM-*****",
+        "SUGPUSXOMT*****",
+        "SUGPUSXOMC*****",
+        "SFGPUSXOC-*****",
+        "SFGPUSXOM-*****",
+        "SFGPUSXOMT*****",
+        "SFGPUSXOMC*****",
+        "SNGPUSXOC-*****",
+        "SNGPUSXOM-*****",
+        "SNGPUSXOMT*****",
+        "SNGPUSXOMC*****",
+        "SHGPUSXOC-*****",
+        "SHGPUSXOM-*****",
+        "SHGPUSXOMT*****",
+        "SHGPUSXOMC*****"
+      ]
+    },
+    {
+      "page": 202,
+      "codes": [
+        "SUGPEWMAS-*****",
+        "SUGPEWMASR*****",
+        "SUGPEWMASE*****",
+        "SFGPEWMAS-*****",
+        "SFGPEWMASR*****",
+        "SFGPEWMASE*****",
+        "SNGPEWMAS-*****",
+        "SNGPEWMASR*****",
+        "SNGPEWMASE*****",
+        "SHGPEWMAS-*****",
+        "SHGPEWMASR*****",
+        "SHGPEWMASE*****"
+      ]
+    },
+    {
+      "page": 203,
+      "codes": [
+        "SUGPEWMAI-",
+        "SUGPEWMAIR**",
+        "SUGPEWMAIE**",
+        "SFGPEWMAI-",
+        "SFGPEWMAIR**",
+        "SFGPEWMAIE**",
+        "SNGPEWMAI-",
+        "SNGPEWMAIR**",
+        "SNGPEWMAIE**",
+        "SHGPEWMAI-",
+        "SHGPEWMAIR**",
+        "SHGPEWMAIE**"
+      ]
+    },
+    {
+      "page": 204,
+      "codes": [
+        "SUGPEWMAL-",
+        "SUGPEWMALR*",
+        "SUGPEWMALE**",
+        "SFGPEWMAL-",
+        "SFGPEWMALR**",
+        "SFGPEWMALE**",
+        "SNGPEWMAL-",
+        "SNGPEWMALR*",
+        "SNGPEWMALE**",
+        "SHGPEWMAL-",
+        "SHGPEWMALR*",
+        "SHGPEWMALE**"
+      ]
+    },
+    {
+      "page": 215,
+      "codes": [
+        "SUGPEWZH--",
+        "SUGPEWO---",
+        "SUGPEWOL--",
+        "SFGPEWZH--",
+        "SFGPEWO---",
+        "SFGPEWOL--",
+        "SNGPEWZH--",
+        "SNGPEWO---",
+        "SNGPEWOL--",
+        "SHGPEWZH--",
+        "SHGPEWO---",
+        "SHGPEWOL--"
+      ]
+    },
+    {
+      "page": 216,
+      "codes": [
+        "SUGPEWOM--",
+        "SUGPEWOH--",
+        "SUGPEWH---",
+        "SFGPEWOM--",
+        "SFGPEWOH--",
+        "SFGPEWH---",
+        "SNGPEWOM--",
+        "SNGPEWOH--",
+        "SNGPEWH---",
+        "SHGPEWOM--",
+        "SHGPEWOH--",
+        "SHGPEWH---"
+      ]
+    },
+    {
+      "page": 217,
+      "codes": [
+        "SUGPEWHL--",
+        "SUGPEWHLS-",
+        "SUGPEWHM--",
+        "SFGPEWHL--",
+        "SFGPEWHLS-",
+        "SFGPEWHM--",
+        "SNGPEWHL--",
+        "SNGPEWHLS-",
+        "SNGPEWHM--",
+        "SHGPEWHL--",
+        "SHGPEWHLS-",
+        "SHGPEWHM--"
+      ]
+    },
+    {
+      "page": 218,
+      "codes": [
+        "SUGPEWHMS-",
+        "SUGPEWHH--",
+        "SUGPEWHHS-",
+        "SFGPEWHMS-",
+        "SFGPEWHH--",
+        "SFGPEWHHS-",
+        "SNGPEWHMS-",
+        "SNGPEWHH--",
+        "SNGPEWHHS-",
+        "SHGPEWHMS-",
+        "SHGPEWHH--",
+        "SHGPEWHHS-"
+      ]
+    },
+    {
+      "page": 219,
+      "codes": [
+        "SUGPEWG---",
+        "SUGPEWGL--",
+        "SUGPEWGM--",
+        "SFGPEWG---",
+        "SFGPEWGL--",
+        "SFGPEWGM--",
+        "SNGPEWG---",
+        "SNGPEWGL--",
+        "SNGPEWGM--",
+        "SHGPEWG---",
+        "SHGPEWGL--",
+        "SHGPEWGM--"
+      ]
+    },
+    {
+      "page": 220,
+      "codes": [
+        "SUGPEWGH--",
+        "SUGPEWGR--",
+        "SUGPEWD---",
+        "SFGPEWGH--",
+        "SFGPEWGR--",
+        "SFGPEWD---",
+        "SNGPEWGH--",
+        "SNGPEWGR--",
+        "SNGPEWD---",
+        "SHGPEWGH--",
+        "SHGPEWGR--",
+        "SHGPEWD---"
+      ]
+    },
+    {
+      "page": 221,
+      "codes": [
+        "SUGPEWDL--",
+          "SUGPEWDLS-",
+            "SUGPEWDM--",
+        "SFGPEWDL--",
+          "SFGPEWDLS-",
+            "SFGPEWDM--",
+        "SNGPEWDL--",
+          "SNGPEWDLS-",
+            "SNGPEWDM--",
+        "SHGPEWDL--",
+          "SHGPEWDLS-",
+            "SHGPEWDM--"
+      ]
+    },
+    {
+      "page": 222,
+      "codes": [
+        "SUGPEWDMS-",
+          "SUGPEWDH--",
+            "SUGPEWDHS-",
+        "SFGPEWDMS-",
+          "SFGPEWDH--",
+            "SFGPEWDHS-",
+        "SNGPEWDMS-",
+          "SNGPEWDH--",
+            "SNGPEWDHS-",
+        "SHGPEWDMS-",
+          "SHGPEWDH--",
+            "SHGPEWDHS-"
+      ]
+    },
+    {
+      "page": 223,
+      "codes": [
+        "SUGPEWA---",
+        "SUGPEWAL--",
+        "SUGPEWAM--",
+        "SFGPEWA---",
+        "SFGPEWAL--",
+        "SFGPEWAM--",
+        "SNGPEWA---",
+        "SNGPEWAL--",
+        "SNGPEWAM--",
+        "SHGPEWA---",
+        "SHGPEWAL--",
+        "SHGPEWAM--"
+      ]
+    },
+    {
+      "page": 224,
+      "codes": [
+        "SUGPEWAH--",
+        "SUGPEV----*****",
+        "SUGPEVA---",
+        "SFGPEWAH--",
+        "SFGPEV----*****",
+        "SFGPEVA---*****",
+        "SNGPEWAH--",
+        "SNGPEV----*****",
+        "SHGPEWAH--",
+        "SNGPEVA---",
+        "SHGPEV----*****",
+        "SHGPEVA---"
+      ]
+    },
+    {
+      "page": 255,
+      "codes": [
+        "SUGPI-----H****",
+        "SUGPIR----H****",
+        "SUGPIRM---H****",
+        "SUGPIRP---H****",
+        "SFGPI-----H****",
+        "SFGPIR----H****",
+        "SFGPIRM---H****",
+        "SFGPIRP---H****",
+        "SNGPI-----H****",
+        "SNGPIR----H****",
+        "SNGPIRM---H****",
+        "SNGPIRP---H****",
+        "SHGPI-----H****",
+        "SHGPIR----H****",
+        "SHGPIRM---H****",
+        "SHGPIRP---H****"
+      ]
+    },
+    {
+      "page": 256,
+      "codes": [
+        "SUGPIRN---H****",
+        "SUGPIRNB--H****",
+        "SUGPIRNC--H****",
+        "SFGPIRN---H****",
+        "SFGPIRNB--H****",
+        "SFGPIRNC--H****",
+        "SNGPIRN---H****",
+        "SNGPIRNB--H****",
+        "SNGPIRNC--H****",
+        "SHGPIRN---H****",
+        "SHGPIRNB--H****",
+        "SHGPIRNC--H****"
+      ]
+    },
+    {
+      "page": 257,
+      "codes": []
+    },
+    {
+      "page": 258,
+      "codes": []
+    },
+    {
+      "page": 259,
+      "codes": []
+    },
+    {
+      "page": 260,
+      "codes": []
+    },
+    {
+      "page": 261,
+      "codes": []
+    },
+    {
+      "page": 262,
+      "codes": []
+    },
+    {
+      "page": 263,
+      "codes": []
+    },
+    {
+      "page": 264,
+      "codes": []
+    },
+    {
+      "page": 265,
+      "codes": []
+    },
+    {
+      "page": 266,
+      "codes": []
+    },
+    {
+      "page": 282,
+      "codes": []
+    },
+    {
+      "page": 283,
+      "codes": []
+    },
+    {
+      "page": 284,
+      "codes": []
+    },
+    {
+      "page": 285,
+      "codes": []
+    },
+    {
+      "page": 288,
+      "codes": []
+    },
+    {
+      "page": 289,
+      "codes": []
+    },
+    {
+      "page": 290,
+      "codes": []
+    },
+    {
+      "page": 291,
+      "codes": []
+    },
+    {
+      "page": 292,
+      "codes": []
+    },
+    {
+      "page": 293,
+      "codes": []
+    },
+    {
+      "page": 294,
+      "codes": []
+    },
+    {
+      "page": 295,
+      "codes": []
+    },
+    {
+      "page": 296,
+      "codes": [
+        "SUUPWDM---*****",
+        "SUUPWDMG--*****",
+        "SUUPWDMM--*****",
+        null,
+        "SUUPND----*****",
+        "SUUPE-----*****",
+        "SFUPWDM---*****",
+        "SFUPWDMG--*****",
+        "SFUPWDMM--*****",
+        null,
+        "SFUPND----*****",
+        "SFUPE-----*****",
+        "SNUPWDM---*****",
+        "SNUPWDMG--*****",
+        "SNUPWDMM--*****",
+        null,
+        "SNUPND----*****",
+        "SNUPE-----*****",
+        "SHUPWDM---*****",
+        "SHUPWDMG--*****",
+        "SHUPWDMM--*****",
+        "SHUPND----*****",
+        "SHUPE-----*****"
+      ]
+    },
+    {
+      "page": 973,
+      "codes": [
+        "IUAPSCO-----***",
+        "IUAPSCP-----***",
+        "IUAPSCS-----***",
+        null,
+        "IUAPSRAI----***",
+        "IFAPSCO-----***",
+        "IFAPSCP-----***",
+        "IFAPSCS-----***",
+        null,
+        "IFAPSRAI----***",
+        "INAPSCO-----***",
+        "INAPSCP-----***",
+        "INAPSCS-----***",
+        null,
+        "INAPSRAI----***",
+        "IHAPSCO-----***",
+        "IHAPSCP-----***",
+        "IHAPSCS-----***",
+        null,
+        "IHAPSRAI----***"
+      ]
+    },
+    {
+      "page": 974,
+      "codes": [
+        "IUAPSRAS----***",
+        "IUAPSRC-----***",
+        "IUAPSRD-----***",
+        "IUAPSRE-----***",
+        "IUAPSRF-----***",
+        "IFAPSRAS----***",
+        "IFAPSRC-----***",
+        "IFAPSRD-----***",
+        "IFAPSRE-----***",
+        "IFAPSRF-----***",
+        "INAPSRAS----***",
+        "INAPSRC-----***",
+        "INAPSRD-----***",
+        "INAPSRE-----***",
+        "INAPSRF-----***",
+        "IHAPSRAS----***",
+        "IHAPSRC-----***",
+        "IHAPSRD-----***",
+        "IHAPSRE-----***",
+        "IHAPSRF-----***"
+      ]
+    }
+  ]
+}
