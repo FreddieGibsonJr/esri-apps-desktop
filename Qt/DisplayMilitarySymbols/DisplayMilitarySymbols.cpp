@@ -182,7 +182,7 @@ void DisplayMilitarySymbols::componentComplete() {
         style->load();
 }
 
-QStringList GenerateSymbolCodes(int count = 0, int skip = 0) {
+QStringList DisplayMilitarySymbols::GenerateSymbolCodes(int count, int skip) {
     if (count > 0)
         count++;
 

@@ -30,6 +30,7 @@ namespace Esri {
 
 #include <QQuickItem>
 #include <string>
+#include "qstringlist.h"
 
 class DisplayMilitarySymbols : public QQuickItem
 {
@@ -40,7 +41,7 @@ class DisplayMilitarySymbols : public QQuickItem
         ~DisplayMilitarySymbols();
 
         void componentComplete() override;
-        Q_INVOKABLE QStringList GenerateSymbolCodes(int count = 0, int skip = 0);
+        void GenerateSymbolCodes(int count = 0, int skip = 0);
 
     private:
         Esri::ArcGISRuntime::Map*             m_map = nullptr;
@@ -48,6 +49,8 @@ class DisplayMilitarySymbols : public QQuickItem
 
         const QString FieldName = "sidc";
         const int Meters = 1000;
+
+        QStringList* codes = nullptr;
 
         Esri::ArcGISRuntime::FeatureCollectionTable* m_dTable = nullptr;
         Esri::ArcGISRuntime::FeatureCollectionTable* m_uTable = nullptr;
